@@ -25,6 +25,7 @@ export default function BookPet({ pet, setModalOpen, setOpen }) {
   const [dateChosen, setDateChosen] = useState(false);
   const [visits, setVisits] = useState([]);
   const [time, setTime] = useState(0);
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     const getVisits = async () => {
@@ -43,7 +44,7 @@ export default function BookPet({ pet, setModalOpen, setOpen }) {
   const handleAddVisit = async () => {
     const newVisit = {
       date: date + time,
-      desc: "now",
+      description: description,
     };
     try {
       await addDoc(
@@ -59,14 +60,24 @@ export default function BookPet({ pet, setModalOpen, setOpen }) {
   if (dateChosen)
     return (
       <div className="flex flex-col">
-        <button onClick={() => setDateChosen(false)}>Wróć</button>
+        <button
+          onClick={() => {
+            setDateChosen(false);
+            setTime(0);
+          }}
+        >
+          Wróć
+        </button>
         {availableHours.map((hour) => {
           const isFree =
             visits.findIndex((visit) => visit.date == date + hour) == -1;
           return (
             <div key={hour}>
               {isFree ? (
-                <p onClick={() => setTime(hour)}>
+                <p
+                  onClick={() => setTime(hour)}
+                  className={hour == time ? "font-bold" : ""}
+                >
                   {new Date(date + hour).toLocaleTimeString()}
                 </p>
               ) : (
@@ -77,7 +88,13 @@ export default function BookPet({ pet, setModalOpen, setOpen }) {
             </div>
           );
         })}
-        <button onClick={handleAddVisit} disabled={!time}>
+        <input
+          type="text"
+          placeholder="opis"
+          className="border-b-2"
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <button onClick={handleAddVisit} disabled={!time || !description}>
           Zapisz
         </button>
       </div>

@@ -44,7 +44,7 @@ export default function Profile() {
   if (listOpen) return <VisitList setOpen={setListOpen} />;
   return (
     <div className="flex flex-col">
-      {user.role === "admin" && <p>You are Admin</p>}
+      {user.role === "admin" && <p>Jesteś Adminem</p>}
       <p>Imię: {user.firstname}</p>
       <p>Nazwisko: {user.lastname}</p>
       <p>Adres: {user.address}</p>
@@ -53,7 +53,7 @@ export default function Profile() {
       <PetList />
       <div className="border-b border-white"></div>
       <button onClick={() => setIsAdding(true)}>Dodaj pupila</button>
-      <button onClick={handleSignOut}>Log out</button>
+      <button onClick={handleSignOut}>Wyloguj</button>
       {user.role === "admin" && (
         <button onClick={() => setListOpen(true)}>*Wszystkie Wizyty</button>
       )}
