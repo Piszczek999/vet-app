@@ -30,7 +30,7 @@ export default function VisitList({ setOpen }) {
       <button onClick={() => setOpen(false)}>Wróć</button>
       {visits.map((visit, i) => (
         <p key={i}>{`${new Date(visit.date).toLocaleString()} ${
-          visit.desc
+          visit.description
         }`}</p>
       ))}
     </div>
