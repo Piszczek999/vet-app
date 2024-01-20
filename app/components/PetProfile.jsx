@@ -24,7 +24,7 @@ export default function PetProfile({ pet, setModalOpen }) {
       }
     };
     getVisits();
-  }, []);
+  }, [pet.id]);
 
   if (isLoading) return <p>Loading...</p>;
 
