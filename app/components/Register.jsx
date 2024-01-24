@@ -29,6 +29,8 @@ export default function Register({ setIsRegister }) {
       await setDoc(doc(db, "users", authUser.uid), newUser);
     } catch (error) {
       if (error.code === "auth/invalid-email") setMessage("Invalid email");
+      if (error.code === "auth/missing-password")
+        setMessage("Missing password");
       else console.error(error);
     }
   };
@@ -39,6 +41,9 @@ export default function Register({ setIsRegister }) {
         <h1 className="text-center text-xl mb-4">
           Gabinet Weterynaryjny <br /> Doctor Vet
         </h1>
+        {message && (
+          <p className="bg-yellow-300 py-2 px-3 rounded-xl">{message}</p>
+        )}
         <input
           onChange={(e) => setFirstname(e.target.value)}
           placeholder="firstname"
@@ -80,6 +85,7 @@ export default function Register({ setIsRegister }) {
         </button>
         <button
           className="btn bg-gray-600"
+          disabled={!firstname || !lastname}
           onClick={() => setIsRegister(false)}
         >
           Posiadam konto

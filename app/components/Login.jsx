@@ -24,7 +24,9 @@ export default function Login({ setIsRegister }) {
         <h1 className="text-center text-xl mb-4">
           Gabinet Weterynaryjny <br /> Doctor Vet
         </h1>
-        {message && <p>{message}</p>}
+        {message && (
+          <p className="bg-yellow-300 py-2 px-3 rounded-xl">{message}</p>
+        )}
         <input
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Login"

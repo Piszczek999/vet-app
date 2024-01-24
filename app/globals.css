@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-100 text-lg font-bold;
+  @apply bg-gray-200 text-lg font-bold;
 }
 
 input {
