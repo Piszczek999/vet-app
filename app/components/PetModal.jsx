@@ -18,18 +18,7 @@ export default function PetModal({ onClose, isOpen, children }) {
         justifyContent: "center",
       }}
     >
-      <div
-        style={{
-          background: "white",
-          width: "80%",
-          margin: "auto",
-          padding: 20,
-          border: "2px solid #000",
-          borderRadius: 10,
-          boxShadow: "2px solid black",
-          color: "black",
-        }}
-      >
+      <div className="bg-gray-100 w-4/5 m-auto p-[20px] rounded-xl">
         {children}
       </div>
     </div>

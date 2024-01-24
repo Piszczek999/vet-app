@@ -19,23 +19,35 @@ export default function Login({ setIsRegister }) {
   };
 
   return (
-    <div className="flex flex-col">
-      <p>Log in</p>
-      {message && <p>{message}</p>}
-      <input
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Login"
-        autoComplete="off"
-      />
-      <input
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        autoComplete="off"
-      />
-      <div className="border-b border-white"></div>
-      <button onClick={async () => await handleSignIn()}>Login</button>
-      <button onClick={() => setIsRegister(true)}>Create an account</button>
+    <div className="flex flex-col justify-between grow">
+      <div className="flex flex-col gap-5 items-center">
+        <h1 className="text-center text-xl mb-4">
+          Gabinet Weterynaryjny <br /> Doctor Vet
+        </h1>
+        {message && <p>{message}</p>}
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Login"
+          autoComplete="off"
+        />
+        <input
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          autoComplete="off"
+        />
+      </div>
+      <div className="flex flex-col gap-5 items-center">
+        <button
+          className="btn bg-green-700"
+          onClick={async () => await handleSignIn()}
+        >
+          Zaloguj
+        </button>
+        <button className="btn bg-gray-600" onClick={() => setIsRegister(true)}>
+          Utwórz konto
+        </button>
+      </div>
     </div>
   );
 }

@@ -18,13 +18,13 @@ export default function Home() {
 
   if (isLoading)
     return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <p>Loading...</p>
+      <main className="flex min-h-screen flex-col items-center justify-between p-20">
+        <p>Ładowanie...</p>
       </main>
     );
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-20">
       {authUser ? (
         // Zalogowany
         <Profile />

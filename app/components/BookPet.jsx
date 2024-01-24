@@ -59,8 +59,9 @@ export default function BookPet({ pet, setModalOpen, setOpen }) {
 
   if (dateChosen)
     return (
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-1">
         <button
+          className="btn bg-gray-600"
           onClick={() => {
             setDateChosen(false);
             setTime(0);
@@ -76,12 +77,14 @@ export default function BookPet({ pet, setModalOpen, setOpen }) {
               {isFree ? (
                 <p
                   onClick={() => setTime(hour)}
-                  className={hour == time ? "font-bold" : ""}
+                  className={`${
+                    hour == time ? "bg-blue-500 scale-105" : "bg-green-700"
+                  } btn `}
                 >
                   {new Date(date + hour).toLocaleTimeString()}
                 </p>
               ) : (
-                <p className="text-red-600">
+                <p className="btn bg-red-400">
                   {new Date(date + hour).toLocaleTimeString()}
                 </p>
               )}
@@ -91,18 +94,24 @@ export default function BookPet({ pet, setModalOpen, setOpen }) {
         <input
           type="text"
           placeholder="opis"
-          className="border-b-2"
+          className="max-w-none"
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button onClick={handleAddVisit} disabled={!time || !description}>
+        <button
+          className="btn bg-green-700"
+          onClick={handleAddVisit}
+          disabled={!time || !description}
+        >
           Zapisz
         </button>
       </div>
     );
   else
     return (
-      <div className="flex flex-col">
-        <button onClick={() => setOpen(false)}>Wróć</button>
+      <div className="flex flex-col items-center gap-5">
+        <button className="btn bg-gray-600" onClick={() => setOpen(false)}>
+          Wróć
+        </button>
         <Calendar
           onChange={(e) => setDate(e.getTime())}
           value={[new Date(), new Date(Date.now() + 14 * 86400000)]}

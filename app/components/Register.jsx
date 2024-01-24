@@ -10,6 +10,7 @@ export default function Register({ setIsRegister }) {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleCreateUser = async () => {
     try {
@@ -27,48 +28,63 @@ export default function Register({ setIsRegister }) {
       };
       await setDoc(doc(db, "users", authUser.uid), newUser);
     } catch (error) {
-      console.error(error);
+      if (error.code === "auth/invalid-email") setMessage("Invalid email");
+      else console.error(error);
     }
   };
+
   return (
-    <div className="flex flex-col">
-      <p>Create an account</p>
-      <input
-        onChange={(e) => setFirstname(e.target.value)}
-        placeholder="firstname"
-        autoComplete="off"
-      />
-      <input
-        onChange={(e) => setLastname(e.target.value)}
-        placeholder="lastname"
-        autoComplete="off"
-      />
-      <input
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="email"
-        autoComplete="off"
-      />
-      <input
-        onChange={(e) => setPhone(e.target.value)}
-        placeholder="phone ex. +48 435534254"
-        autoComplete="off"
-      />
-      <input
-        onChange={(e) => setAddress(e.target.value)}
-        placeholder="address"
-        autoComplete="off"
-      />
-      <input
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="password"
-        autoComplete="off"
-      />
-      <div className="border-b border-white"></div>
-      <button onClick={async () => await handleCreateUser()}>Register</button>
-      <button onClick={() => setIsRegister(false)}>
-        Already have an account?
-      </button>
+    <div className="flex flex-col justify-between grow">
+      <div className="flex flex-col gap-3 items-center">
+        <h1 className="text-center text-xl mb-4">
+          Gabinet Weterynaryjny <br /> Doctor Vet
+        </h1>
+        <input
+          onChange={(e) => setFirstname(e.target.value)}
+          placeholder="firstname"
+          autoComplete="off"
+        />
+        <input
+          onChange={(e) => setLastname(e.target.value)}
+          placeholder="lastname"
+          autoComplete="off"
+        />
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="email"
+          autoComplete="off"
+        />
+        <input
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder="phone ex. +48 435534254"
+          autoComplete="off"
+        />
+        <input
+          onChange={(e) => setAddress(e.target.value)}
+          placeholder="address"
+          autoComplete="off"
+        />
+        <input
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="password"
+          autoComplete="off"
+        />
+      </div>
+      <div className="flex flex-col gap-5 items-center">
+        <button
+          className="btn bg-green-700"
+          onClick={async () => await handleCreateUser()}
+        >
+          Zapisz
+        </button>
+        <button
+          className="btn bg-gray-600"
+          onClick={() => setIsRegister(false)}
+        >
+          Posiadam konto
+        </button>
+      </div>
     </div>
   );
 }

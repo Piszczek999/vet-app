@@ -39,24 +39,38 @@ export default function Profile() {
     }
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>Ładowanie...</p>;
   if (isAdding) return <AddPet setOpen={setIsAdding} />;
   if (listOpen) return <VisitList setOpen={setListOpen} />;
   return (
-    <div className="flex flex-col">
-      {user.role === "admin" && <p>Jesteś Adminem</p>}
-      <p>Imię: {user.firstname}</p>
-      <p>Nazwisko: {user.lastname}</p>
-      <p>Adres: {user.address}</p>
-      <p>Telefon: {user.phone}</p>
-      <h1>Pupile:</h1>
-      <PetList />
-      <div className="border-b border-white"></div>
-      <button onClick={() => setIsAdding(true)}>Dodaj pupila</button>
-      <button onClick={handleSignOut}>Wyloguj</button>
-      {user.role === "admin" && (
-        <button onClick={() => setListOpen(true)}>*Wszystkie Wizyty</button>
-      )}
+    <div className="flex flex-col justify-between grow">
+      <div>
+        <p className="text-center text-2xl">{`Witaj ${user.firstname}!`}</p>
+        {user.role === "admin" && (
+          <p className="text-center text-2xl">Administrator</p>
+        )}
+      </div>
+      <div>
+        <p className="text-center mb-3 text-xl">Wybierz pupila</p>
+        <PetList />
+      </div>
+
+      <div className="flex flex-col gap-5">
+        <button className="btn bg-green-700" onClick={() => setIsAdding(true)}>
+          Dodaj pupila
+        </button>
+        <button className="btn bg-gray-600" onClick={handleSignOut}>
+          Wyloguj
+        </button>
+        {user.role === "admin" && (
+          <button
+            className="btn bg-green-700"
+            onClick={() => setListOpen(true)}
+          >
+            *Wszystkie Wizyty
+          </button>
+        )}
+      </div>
     </div>
   );
 }

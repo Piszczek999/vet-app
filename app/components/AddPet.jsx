@@ -44,74 +44,86 @@ export default function AddPet({ setOpen }) {
   };
 
   return (
-    <form className="flex flex-col" onSubmit={(e) => handleAddPet(e)}>
-      <input
-        type="text"
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Imię"
-        autoComplete="off"
-      />
-      {species === "Inny" ? (
+    <form
+      className="flex flex-col justify-between grow"
+      onSubmit={(e) => handleAddPet(e)}
+    >
+      <div className="flex flex-col gap-3">
         <input
           type="text"
-          onChange={(e) => setOtherSpecies(e.target.value)}
-          placeholder="Gatunek"
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Imię"
           autoComplete="off"
         />
-      ) : (
+        {species === "Inny" ? (
+          <input
+            type="text"
+            onChange={(e) => setOtherSpecies(e.target.value)}
+            placeholder="Gatunek"
+            autoComplete="off"
+          />
+        ) : (
+          <select
+            onChange={(e) => setSpecies(e.target.value)}
+            value={species}
+            placeholder="Gatunek"
+            className="text-gray-700 bg-gray-300 px-3 py-2 rounded-xl min-w-[200px]"
+          >
+            <option value="" disabled>
+              Wybierz gatunek
+            </option>
+            {speciesList.map((speciesOption, index) => (
+              <option key={index} value={speciesOption}>
+                {speciesOption}
+              </option>
+            ))}
+          </select>
+        )}
+
         <select
-          onChange={(e) => setSpecies(e.target.value)}
-          value={species}
-          placeholder="Gatunek"
-          className="text-black"
+          onChange={(e) => setGender(e.target.value)}
+          value={gender}
+          placeholder="Płeć"
+          className="text-gray-700 bg-gray-300 px-3 py-2 rounded-xl min-w-[200px]"
         >
           <option value="" disabled>
-            Wybierz gatunek
+            <p className="text-gray-500">Wybierz płeć</p>
           </option>
-          {speciesList.map((speciesOption, index) => (
-            <option key={index} value={speciesOption}>
-              {speciesOption}
+          {genderList.map((gender, i) => (
+            <option key={i} value={gender} className="text-black">
+              <p>{gender}</p>
             </option>
           ))}
         </select>
-      )}
-
-      <select
-        onChange={(e) => setGender(e.target.value)}
-        value={gender}
-        placeholder="Płeć"
-        className="text-black"
-      >
-        <option value="" disabled>
-          <p className="text-gray-500">Wybierz płeć</p>
-        </option>
-        {genderList.map((gender, i) => (
-          <option key={i} value={gender} className="text-black">
-            <p>{gender}</p>
-          </option>
-        ))}
-      </select>
-      <input
-        type="text"
-        onChange={(e) => setRace(e.target.value)}
-        placeholder="Rasa (Opcjonalne)"
-        autoComplete="off"
-      />
-      <button
-        type="submit"
-        disabled={
-          isSubmitting ||
-          !name ||
-          !gender ||
-          !species ||
-          (species == "Inny" && !otherSpecies)
-        }
-      >
-        {isSubmitting ? "Dodawanie..." : "Dodaj pupila"}
-      </button>
-      <button type="button" onClick={() => setOpen(false)}>
-        Wróć
-      </button>
+        <input
+          type="text"
+          onChange={(e) => setRace(e.target.value)}
+          placeholder="Rasa (Opcjonalne)"
+          autoComplete="off"
+        />
+      </div>
+      <div className="flex flex-col gap-3">
+        <button
+          className="btn bg-green-700"
+          type="submit"
+          disabled={
+            isSubmitting ||
+            !name ||
+            !gender ||
+            !species ||
+            (species == "Inny" && !otherSpecies)
+          }
+        >
+          {isSubmitting ? "Dodawanie..." : "Dodaj pupila"}
+        </button>
+        <button
+          className="btn bg-gray-600"
+          type="button"
+          onClick={() => setOpen(false)}
+        >
+          Wróć
+        </button>
+      </div>
     </form>
   );
 }

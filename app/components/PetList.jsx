@@ -42,11 +42,15 @@ export default function PetList() {
   if (pets.length === 0) return <p>Brak pupili</p>;
 
   return (
-    <div>
+    <div className="flex flex-col gap-2 overflow-y-scroll max-h-[350px]">
       {pets.map((pet) => (
-        <div key={pet.id} onClick={() => handleOpen(pet.id)}>
+        <button
+          className="btn bg-blue-500"
+          key={pet.id}
+          onClick={() => handleOpen(pet.id)}
+        >
           <p>{`${pet.species} ${pet.name}`}</p>
-        </div>
+        </button>
       ))}
       <PetModal isOpen={modalOpen} onClose={handleClose}>
         <PetProfile pet={selectedPet} setModalOpen={setModalOpen} />

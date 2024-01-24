@@ -3,9 +3,37 @@
 @tailwind utilities;
 
 body {
-  background-color: black;
-  color: white;
+  @apply bg-gray-100 text-lg font-bold;
 }
+
 input {
-  color: black;
+  @apply text-gray-700 bg-gray-300 rounded-xl px-3 py-2 max-w-[250px];
+}
+
+.btn {
+  @apply text-gray-100 px-3 py-2 rounded-xl min-w-[200px] text-center;
+}
+
+.btn:hover {
+  @apply bg-opacity-80;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
 }
