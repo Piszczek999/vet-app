@@ -18,7 +18,7 @@ export default function PetModal({ onClose, isOpen, children }) {
         justifyContent: "center",
       }}
     >
-      <div className="bg-gray-100 w-4/5 m-auto p-[20px] rounded-xl">
+      <div className="bg-gray-100 w-4/5 m-auto p-[20px] rounded-xl max-w-[500px]">
         {children}
       </div>
     </div>
