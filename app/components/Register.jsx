@@ -28,10 +28,11 @@ export default function Register({ setIsRegister }) {
       };
       await setDoc(doc(db, "users", authUser.uid), newUser);
     } catch (error) {
-      if (error.code === "auth/invalid-email") setMessage("Invalid email");
-      if (error.code === "auth/missing-password")
+      if (error.code === "auth/invalid-email") {
+        setMessage("Invalid email");
+      } else if (error.code === "auth/missing-password") {
         setMessage("Missing password");
-      else console.error(error);
+      } else console.error(error);
     }
   };
 
@@ -80,12 +81,12 @@ export default function Register({ setIsRegister }) {
         <button
           className="btn bg-green-700"
           onClick={async () => await handleCreateUser()}
+          disabled={!firstname || !lastname}
         >
           Zapisz
         </button>
         <button
           className="btn bg-gray-600"
-          disabled={!firstname || !lastname}
           onClick={() => setIsRegister(false)}
         >
           Posiadam konto

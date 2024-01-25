@@ -86,12 +86,12 @@ export default function AddPet({ setOpen }) {
           placeholder="Płeć"
           className="text-gray-700 bg-gray-300 px-3 py-2 rounded-xl min-w-[200px]"
         >
-          <option value="" disabled>
-            <p className="text-gray-500">Wybierz płeć</p>
+          <option value="" disabled className="text-gray-500">
+            Wybierz płeć
           </option>
           {genderList.map((gender, i) => (
             <option key={i} value={gender} className="text-black">
-              <p>{gender}</p>
+              {gender}
             </option>
           ))}
         </select>

@@ -51,7 +51,7 @@ export default function PetProfile({ pet, setModalOpen }) {
     getVisits();
   }, [pet.id]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>Ładowanie...</p>;
 
   if (isBooking)
     return (

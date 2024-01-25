@@ -37,9 +37,9 @@ export default function PetList() {
     setModalOpen(false);
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>Ładowanie...</p>;
 
-  if (pets.length === 0) return <p>Brak pupili</p>;
+  if (pets.length === 0) return <p className="text-center">Brak pupili</p>;
 
   return (
     <div className="flex flex-col gap-2 overflow-y-scroll max-h-[350px]">

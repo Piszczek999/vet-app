@@ -11,10 +11,11 @@ export default function Login({ setIsRegister }) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-      if (error.code == "auth/invalid-email") setMessage("Invalid email");
-      else if (error.code == "auth/invalid-credential")
+      if (error.code == "auth/invalid-email") {
+        setMessage("Invalid email");
+      } else if (error.code == "auth/invalid-credential") {
         setMessage("Invalid password");
-      console.error(error);
+      } else console.error(error);
     }
   };
 

@@ -61,7 +61,7 @@ export default function VisitList({ setOpen }) {
     } ${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>Ładowanie...</p>;
 
   return (
     <div className="flex flex-col gap-5">
